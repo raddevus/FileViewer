@@ -25,17 +25,7 @@ namespace HelloPhotinoApp
                 // Users can resize windows by default.
                 // Let's make this one fixed instead.
                 .SetResizable(false)
-                .RegisterCustomSchemeHandler("app", (object sender, string scheme, string url, out string contentType) =>
-                {
-                    contentType = "text/javascript";
-                    return new MemoryStream(Encoding.UTF8.GetBytes(@"
-                        (() =>{
-                            window.setTimeout(() => {
-                                alert(`🎉 Dynamically inserted JavaScript.`);
-                            }, 1000);
-                        })();
-                    "));
-                })
+                
                 // Most event handlers can be registered after the
                 // PhotinoWindow was instantiated by calling a registration 
                 // method like the following RegisterWebMessageReceivedHandler.
