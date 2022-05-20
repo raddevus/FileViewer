@@ -19,12 +19,12 @@ namespace HelloPhotinoApp
                 .SetTitle(windowTitle)
                 // Resize to a percentage of the main monitor work area
                 .SetUseOsDefaultSize(false)
-                .SetSize(new Size(600, 400))
+                .SetSize(new Size(800, 600))
                 // Center window in the middle of the screen
                 .Center()
                 // Users can resize windows by default.
                 // Let's make this one fixed instead.
-                .SetResizable(false)
+                .SetResizable(true)
                 
                 // Most event handlers can be registered after the
                 // PhotinoWindow was instantiated by calling a registration 

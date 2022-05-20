@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photino for .NET Demo</title>
     <link rel="stylesheet" href="assets/main.css" />
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="files.js"></script>
 </head>
-<body>
+<body onload="initFiles()">
     <img src="assets/photino-logo.svg" alt="Photino" class="logo center" />
 
     <h1 class="text-center">Hello to Photino for .NET</h1>
@@ -19,6 +22,8 @@
     </p>
     <button class="primary center" onclick="callDotNet()">Call .NET</button>
 
+    <div id="files">
+    </div>
     <script src="app://dynamic.js"></script>
 
     <script>
