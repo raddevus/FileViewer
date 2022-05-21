@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photino for .NET Demo</title>
     <link rel="stylesheet" href="assets/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="files.js"></script>
@@ -13,15 +15,11 @@
 <body onload="initFiles()">
     <img src="assets/photino-logo.svg" alt="Photino" class="logo center" />
 
-    <h1 class="text-center">Hello to Photino for .NET</h1>
-
-    <p class="text-center">
-        This is a static HTML file with CSS and JavaScript, served from a local web root. 
-        Click on the button below to send a message to the backend. 
-        It will respond and send a message back to the UI.
-    </p>
     <button class="primary center" onclick="callDotNet()">Call .NET</button>
-
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+    </div>
     <div id="files">
     </div>
     <script src="app://dynamic.js"></script>
