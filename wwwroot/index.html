@@ -13,7 +13,6 @@
     <script src="files.js"></script>
 </head>
 <body onload="initFiles()">
-    <img src="assets/photino-logo.svg" alt="Photino" class="logo center" />
 
     <button class="primary center" onclick="callDotNet()">Call .NET</button>
     <div class="input-group mb-3">
@@ -22,8 +21,7 @@
     </div>
     <div id="files">
     </div>
-    <script src="app://dynamic.js"></script>
-
+    
     <script>
         function callDotNet() {
             window.external.sendMessage('Hi .NET! 🤖');
