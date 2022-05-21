@@ -44,8 +44,8 @@ namespace HelloPhotinoApp
                         default:{
                             // The message argument is coming in from sendMessage.
                             // "window.external.sendMessage(message: string)"
-                             var response = new {command=$"Received message: \"{message}\"",
-                                data="this is the message"};
+                             var response = new {command="default",
+                                data=$"Received message: \"{message}\""};
                             // Send a message back the to JavaScript event handler.
                             // "window.external.receiveMessage(callback: Function)"
                             window.SendWebMessage(JsonSerializer.Serialize( response));

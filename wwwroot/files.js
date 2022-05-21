@@ -3,9 +3,9 @@
 function initFiles(){
   // Registers the receive loop for the program
   window.external.receiveMessage(response => {
-      alert(response);
+      //alert(response);
       response = JSON.parse(response);
-      alert(response.command);
+      //alert(response.command);
       switch (response.command){
           case "getInitialPath":{
               document.querySelector("#clearTextFilePath").value = response.data;
