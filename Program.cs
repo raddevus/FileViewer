@@ -3,6 +3,8 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace HelloPhotinoApp
 {
@@ -32,14 +34,26 @@ namespace HelloPhotinoApp
                 // This could be added in the PhotinoWindowOptions if preferred.
                 .RegisterWebMessageReceivedHandler((object sender, string message) => {
                     var window = (PhotinoWindow)sender;
-
-                    // The message argument is coming in from sendMessage.
-                    // "window.external.sendMessage(message: string)"
-                    string response = $"Received message: \"{message}\"";
-
-                    // Send a message back the to JavaScript event handler.
-                    // "window.external.receiveMessage(callback: Function)"
-                    window.SendWebMessage(response);
+                    // response = String.Empty;
+                    switch (message){
+                        case "getInitialPath" :{
+                            var response = new {command=message,data=Environment.CurrentDirectory};
+                            window.SendWebMessage(JsonSerializer.Serialize( response));
+                            break;
+                        }
+                        default:{
+                            // The message argument is coming in from sendMessage.
+                            // "window.external.sendMessage(message: string)"
+                             var response = new {command=$"Received message: \"{message}\"",
+                                data="this is the message"};
+                            // Send a message back the to JavaScript event handler.
+                            // "window.external.receiveMessage(callback: Function)"
+                            window.SendWebMessage(JsonSerializer.Serialize( response));
+                            break;
+                        }                        
+                    }
+                    
+                    
                 })
                 .Load("wwwroot/index.html"); // Can be used with relative path strings or "new URI()" instance to load a website.
 

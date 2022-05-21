@@ -15,19 +15,25 @@
 <body onload="initFiles()">
 
     <button class="primary center" onclick="callDotNet()">Call .NET</button>
+
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+        <input id="clearTextFilePath" type="text" class="form-control" placeholder="Clear-text file" aria-label="clear-text-file" aria-describedby="clearTextFileButton">
+        <button class="btn btn-outline-secondary" type="button" id="clearTextFileButton">Button</button>
+      </div>
+      
+
+    <div class="mb-3">
+        <label for="formFileSm" class="form-label">Small file input example</label>
+        <input class="form-control form-control-sm" id="formFileSm" type="file">
     </div>
+   
     <div id="files">
     </div>
-    
+
     <script>
         function callDotNet() {
             window.external.sendMessage('Hi .NET! 🤖');
         }
-
-        window.external.receiveMessage(message => alert(message));
     </script>
 </body>
 </html>
