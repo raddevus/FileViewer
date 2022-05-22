@@ -38,10 +38,11 @@ namespace HelloPhotinoApp
                     switch (message){
                         case "getInitialPath" :{
                             var userHome = FileSystem.GetUserHome();
-                            var response = new {command=message,data=userHome};
+                            
                             FileSystem fs = new FileSystem(userHome);
-                            Console.WriteLine(JsonSerializer.Serialize(fs.GetAllFileSystemItems()));
-                            Console.WriteLine("waht");
+                            var response = new {command=message,data=userHome,fsi=fs.GetAllFileSystemItems()};
+                            //Console.WriteLine(JsonSerializer.Serialize(fs.GetAllFileSystemItems()));
+                            
                             //fs.GetAllFileSystemItems();
                             window.SendWebMessage(JsonSerializer.Serialize( response));
                             break;

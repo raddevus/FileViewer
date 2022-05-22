@@ -20,15 +20,20 @@
         <input id="clearTextFilePath" type="text" class="form-control" placeholder="Clear-text file" aria-label="clear-text-file" aria-describedby="clearTextFileButton">
         <button class="btn btn-outline-secondary" type="button" id="clearTextFileButton">Button</button>
       </div>
-      
-
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Small file input example</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
    
     <div id="files">
     </div>
+    <table id="fileSystem" class="table  table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>FullName</th>
+            </tr>
+        </thead>
+        <tbody id="fileSystemItems">
+        </tbody>
+    </table>
 
     <script>
         function callDotNet() {
