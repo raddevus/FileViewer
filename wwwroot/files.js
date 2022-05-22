@@ -20,9 +20,10 @@ function initFiles(){
       }
     });
 
-    ReactDOM.render(
+    ReactDOM.createRoot(document.querySelector('#files'))
+        .render(
         React.createElement('h3', null, 'File System'),
-        document.getElementById('files')
+        
       );
       
       // window.external.receiveClearTextPath(currentDir => {
@@ -49,9 +50,10 @@ function FileSystemTable(fileSystemInfo){
 }
 
 function DisplayFileSystemTable(fsi, rootElement){
-  ReactDOM.render(
+  ReactDOM.createRoot(document
+    .querySelector(rootElement))
+    .render(
       FileSystemTable (fsi),
-      document.querySelector(rootElement),
       //hideWaitCursor();
   );
 }
