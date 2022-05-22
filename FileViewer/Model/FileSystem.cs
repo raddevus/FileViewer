@@ -32,7 +32,7 @@ public class FileSystem{
             FileSystemItem fsi = new FileSystemItem(fi.Name,fsiType,fi.FullName);
             allFileSysItems.Add(fsi);
         }
-        Console.WriteLine($"got one: {allFileSysItems.Count}");
+        Console.WriteLine($"file count: {allFileSysItems.Count}");
         return allFileSysItems;
     }
 }
