@@ -1,4 +1,5 @@
 using Xunit;
+using System.Collections.Generic;
 
 namespace TestProject1
 {
@@ -9,5 +10,13 @@ namespace TestProject1
         {
 
         }
+
+        [Fact]
+        public void GetFileSystemItems(){
+            FileSystem fs = new FileSystem(@"c:\users\");
+            List<FileSystemItem> allItems = fs.GetAllFileSystemItems();
+        }
     }
+
+    
 }

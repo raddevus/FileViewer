@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 
 
-class FileSystem{
+public class FileSystem{
 
     private String currentPath;
     public FileSystem(String currentPath)

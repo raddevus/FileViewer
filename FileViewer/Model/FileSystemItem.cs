@@ -1,6 +1,6 @@
 using System;
 
-class FileSystemItem {
+public class FileSystemItem {
 
     public FileSystemItem(String name, char type, String fullName)
     {
