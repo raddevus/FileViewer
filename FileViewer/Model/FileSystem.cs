@@ -11,7 +11,7 @@ public class FileSystem{
     private String currentPath;
     public FileSystem(String currentPath)
     {
-        this.currentPath = currentPath + "\\";
+        this.currentPath = currentPath;
     }
 
     static public String GetUserHome(){
