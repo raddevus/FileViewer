@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ namespace FileViewer.Tests
     {
         [Fact]
         public void GetFileSystemItems(){
-            FileSystem fs = new FileSystem(@"c:\users\");
+            FileSystem fs = new FileSystem(Environment.GetFolderPath (Environment.SpecialFolder.UserProfile));
             List<FileSystemItem> allItems = fs.GetAllFileSystemItems();
             Assert.True(allItems.Count > 0);
 
