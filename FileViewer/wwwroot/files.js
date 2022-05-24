@@ -44,32 +44,45 @@ function isDirectory(fsiType){
   return false;
 }
 
-function FileSystemTable(fileSystemInfo){
-
-  console.log(fileSystemInfo[0]);
-   let allItems = [];
-
-  for (let x=0; x < fileSystemInfo.length;x++){
-      allItems.push( React.createElement("tr",{key:x},
-          React.createElement("td",{width:"150px"}, 
-          React.createElement("svg", isDirectory(fileSystemInfo[x].Type) ? folderIcon[0]: fileIcon[0],
-            React.createElement("path", isDirectory(fileSystemInfo[x].Type) ? folderIcon[1]: fileIcon[1] ,null)
-          ), ),
-          React.createElement("td",null,fileSystemInfo[x].Name),
-          React.createElement("td",null, fileSystemInfo[x].Type),
-          React.createElement("td",null, fileSystemInfo[x].FullName)
-          )
-       ) ;
+class FSTable extends React.Component{
+  constructor(props){
+    super(props);
+    this.fileSystemInfo = this.props.fsi;
   }
-  return allItems;
+
+  render(){
+    console.log("render...");
+    
+    return (
+      this.FileSystemTable(this.fileSystemInfo)
+    );
+  }
+
+  FileSystemTable(fileSystemInfo){
+    console.log(fileSystemInfo[0]);
+     let allItems = [];
+  
+    for (let x=0; x < fileSystemInfo.length;x++){
+        allItems.push( React.createElement("tr",{key:x},
+            React.createElement("td",{width:"150px"}, 
+            React.createElement("svg", isDirectory(fileSystemInfo[x].Type) ? folderIcon[0]: fileIcon[0],
+              React.createElement("path", isDirectory(fileSystemInfo[x].Type) ? folderIcon[1]: fileIcon[1] ,null)
+            ), ),
+            React.createElement("td",null,fileSystemInfo[x].Name),
+            React.createElement("td",null, fileSystemInfo[x].Type),
+            React.createElement("td",null, fileSystemInfo[x].FullName)
+            )
+         ) ;
+    }
+    return allItems;
+  }
+
 }
 
 function DisplayFileSystemTable(fsi, rootElement){
-  ReactDOM.createRoot(document
-    .querySelector(rootElement))
+  ReactDOM.createRoot(document.querySelector(rootElement))
     .render(
-      FileSystemTable (fsi),
-      //hideWaitCursor();
+      React.createElement(FSTable, {fsi:fsi}),
   );
 }
 
