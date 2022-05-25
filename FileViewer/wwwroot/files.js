@@ -16,7 +16,14 @@ function initFiles(){
               break;
           }
           case "getPathData":{
-            alert(`response.data : ${response.data}`);
+            //alert(`response.data : ${response.data}`);
+            if (response.fsi.length == 0){
+              alert("Can't get path.");
+              return;
+            }
+            document.querySelector("#clearTextFilePath").value = response.data;
+              //alert(`${response.fsi[0].Name} | ${response.fsi[0].Type} | ${response.fsi[0].FullName}`);
+              DisplayFileSystemTable(response.fsi, "#fileSystemItems");
             break;
           }
           default:{
@@ -71,9 +78,17 @@ class FSTable extends React.Component{
     for (let x=0; x < fileSystemInfo.length;x++){
         allItems.push( React.createElement("tr",{
             key:x,onClick:() => {
-              alert(this.fileSystemInfo[x].Name);
-              let getPathData = `{"Command":"getPathData","Data":"${this.fileSystemInfo[x].Name}"}`;
-              window.external.sendMessage(getPathData);
+              // alert(this.fileSystemInfo[x].Name);
+              if (this.fileSystemInfo[x].Type == 'd'){
+                // Click Event for DIRECTORIES
+                let getPathData = `{"Command":"getPathData","Data":"${this.fileSystemInfo[x].FullName}"}`;
+                window.external.sendMessage(getPathData);
+              }
+              else{
+                // Click Event for FILES
+                let getFileData = `{"Command":"getFileData","Data":"${this.fileSystemInfo[x].FullName}"}`;
+                window.external.sendMessage(getFileData);
+              }
             }
           },
             React.createElement("td",{width:"150px"}, 

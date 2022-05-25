@@ -51,7 +51,10 @@ namespace HelloPhotinoApp
                             break;
                         }
                         case "getPathData" :{
-                            var response = new {command=wm.Command,data=wm.Data};
+                            FileSystem fs = new FileSystem(wm.Data);
+                            var outPath = wm.Data;
+                            
+                            var response = new {command=wm.Command,data=outPath,fsi=fs.GetAllFileSystemItems()};
                             window.SendWebMessage(JsonSerializer.Serialize(response));
                             break;
                         }

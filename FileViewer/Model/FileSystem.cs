@@ -20,9 +20,16 @@ public class FileSystem{
 
     public List<FileSystemItem> GetAllFileSystemItems(){
         List<FileSystemItem> allFileSysItems = new List<FileSystemItem>();
+        try{
         DirectoryInfo di = new DirectoryInfo(currentPath);
         Console.WriteLine($"currentPath : {currentPath}");
+        if (currentPath.Length == 1 && currentPath[0] == Path.DirectorySeparatorChar){
+            //doesn't allow user to get to root - probably will change later.
+            return allFileSysItems;
+        }
         var allSystemInfo = di.EnumerateFileSystemInfos();
+        allFileSysItems.Add(new FileSystemItem("..",'d',Path.Combine(Directory.GetParent(currentPath).FullName)));
+
         foreach (FileSystemInfo fi in allSystemInfo){
             char fsiType = 'f';
             if ((fi.Attributes & FileAttributes.Directory) == FileAttributes.Directory )
@@ -33,6 +40,10 @@ public class FileSystem{
             allFileSysItems.Add(fsi);
         }
         Console.WriteLine($"file count: {allFileSysItems.Count}");
+        }
+        catch (System.UnauthorizedAccessException ex){
+
+        }
         return allFileSysItems;
     }
 }
