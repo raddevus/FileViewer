@@ -38,7 +38,9 @@
 
     <script>
         function callDotNet() {
-            window.external.sendMessage('Hi .NET! 🤖');
+            // Command & Data have to begin with uppercase letter 
+            // to get serialized properly on the receiving side.
+            window.external.sendMessage(`{"Command":"testMsg","Data":"Hi .NET! 🤖"}`);
         }
     </script>
 </body>

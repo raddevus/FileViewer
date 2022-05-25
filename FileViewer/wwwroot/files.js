@@ -1,4 +1,5 @@
 
+let initPath = `{"Command":"getInitialPath","Data":null}`;
 
 function initFiles(){
   // Registers the receive loop for the program
@@ -26,7 +27,7 @@ function initFiles(){
         
       );
       
-      let currentDir = window.external.sendMessage("getInitialPath");
+      let currentDir = window.external.sendMessage(initPath);
 }
 
 let folderIcon = [{xmlns:"http://www.w3.org/2000/svg", width:"16", height:"16", fill:"currentColor", class:"bi bi-folder2", viewBox:"0 0 16 16"},
@@ -63,7 +64,12 @@ class FSTable extends React.Component{
      let allItems = [];
   
     for (let x=0; x < fileSystemInfo.length;x++){
-        allItems.push( React.createElement("tr",{key:x,onClick:() => alert(this.fileSystemInfo[x].Name)},
+        allItems.push( React.createElement("tr",{
+            key:x,onClick:() => {
+              alert(this.fileSystemInfo[x].Name);
+              window.external.sendMessage(initPath);
+            }
+          },
             React.createElement("td",{width:"150px"}, 
             React.createElement("svg", isDirectory(fileSystemInfo[x].Type) ? folderIcon[0]: fileIcon[0],
               React.createElement("path", isDirectory(fileSystemInfo[x].Type) ? folderIcon[1]: fileIcon[1] ,null)

@@ -35,23 +35,30 @@ namespace HelloPhotinoApp
                 .RegisterWebMessageReceivedHandler((object sender, string message) => {
                     var window = (PhotinoWindow)sender;
                     // response = String.Empty;
-                    switch (message){
+                    WindowMessage wm = JsonSerializer.Deserialize<WindowMessage>(message);
+                    
+                    Console.WriteLine($"wm.Command: {wm.Command}");
+                    switch (wm.Command){
                         case "getInitialPath" :{
                             var userHome = FileSystem.GetUserHome();
                             
                             FileSystem fs = new FileSystem(userHome);
-                            var response = new {command=message,data=userHome,fsi=fs.GetAllFileSystemItems()};
+                            var response = new {command=wm.Command,data=userHome,fsi=fs.GetAllFileSystemItems()};
                             //Console.WriteLine(JsonSerializer.Serialize(fs.GetAllFileSystemItems()));
                             
                             //fs.GetAllFileSystemItems();
                             window.SendWebMessage(JsonSerializer.Serialize( response));
                             break;
                         }
+                        case "getFileSystemInfo" :{
+
+                            break;
+                        }
                         default:{
                             // The message argument is coming in from sendMessage.
                             // "window.external.sendMessage(message: string)"
-                             var response = new {command="default",
-                                data=$"Received message: \"{message}\""};
+                             var response = new {command=wm.Command,
+                                data=wm.Data};
                             // Send a message back the to JavaScript event handler.
                             // "window.external.receiveMessage(callback: Function)"
                             window.SendWebMessage(JsonSerializer.Serialize( response));
