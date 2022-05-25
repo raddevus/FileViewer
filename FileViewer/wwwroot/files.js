@@ -79,15 +79,21 @@ class FSTable extends React.Component{
         allItems.push( React.createElement("tr",{
             key:x,onClick:() => {
               // alert(this.fileSystemInfo[x].Name);
+
               if (this.fileSystemInfo[x].Type == 'd'){
                 // Click Event for DIRECTORIES
-                let getPathData = `{"Command":"getPathData","Data":"${this.fileSystemInfo[x].FullName}"}`;
-                window.external.sendMessage(getPathData);
+                let getPathData = {};
+                getPathData.Command="getPathData";
+                getPathData.Data = this.fileSystemInfo[x].FullName;
+                window.external.sendMessage(JSON.stringify(getPathData));
+                
               }
               else{
                 // Click Event for FILES
-                let getFileData = `{"Command":"getFileData","Data":"${this.fileSystemInfo[x].FullName}"}`;
-                window.external.sendMessage(getFileData);
+                let getFileData = {};
+                getFileData.Command = "getFileData";
+                getFileData.Data = this.fileSystemInfo[x].FullName;
+                window.external.sendMessage(JSON.stringify(getFileData));
               }
             }
           },
