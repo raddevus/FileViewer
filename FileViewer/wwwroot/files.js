@@ -63,7 +63,7 @@ class FSTable extends React.Component{
      let allItems = [];
   
     for (let x=0; x < fileSystemInfo.length;x++){
-        allItems.push( React.createElement("tr",{key:x},
+        allItems.push( React.createElement("tr",{key:x,onClick:() => alert(this.fileSystemInfo[x].Name)},
             React.createElement("td",{width:"150px"}, 
             React.createElement("svg", isDirectory(fileSystemInfo[x].Type) ? folderIcon[0]: fileIcon[0],
               React.createElement("path", isDirectory(fileSystemInfo[x].Type) ? folderIcon[1]: fileIcon[1] ,null)
