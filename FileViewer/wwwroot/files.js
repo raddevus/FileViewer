@@ -1,6 +1,7 @@
 
 let initPath = `{"Command":"getInitialPath","Data":null}`;
 //let getPathData = `{"Command":"getPathData","Data":${this.fileSystemInfo[x].Name}}`;
+let FST = null;
 
 function initFiles(){
   // Registers the receive loop for the program
@@ -113,9 +114,16 @@ class FSTable extends React.Component{
 }
 
 function DisplayFileSystemTable(fsi, rootElement){
-  ReactDOM.createRoot(document.querySelector(rootElement))
-    .render(
-      React.createElement(FSTable, {fsi:fsi}),
-  );
+  if (FST == null){
+  FST = ReactDOM.createRoot(document.querySelector(rootElement));
+
+    FST
+      .render(
+        React.createElement(FSTable, {fsi:fsi}),
+    );
+  }
+  else{
+    FST.render(new FSTable({fsi:fsi}).FileSystemTable(fsi));
+  }
 }
 
