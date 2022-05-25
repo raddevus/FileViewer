@@ -1,5 +1,6 @@
 
 let initPath = `{"Command":"getInitialPath","Data":null}`;
+//let getPathData = `{"Command":"getPathData","Data":${this.fileSystemInfo[x].Name}}`;
 
 function initFiles(){
   // Registers the receive loop for the program
@@ -13,6 +14,10 @@ function initFiles(){
               //alert(`${response.fsi[0].Name} | ${response.fsi[0].Type} | ${response.fsi[0].FullName}`);
               DisplayFileSystemTable(response.fsi, "#fileSystemItems");
               break;
+          }
+          case "getPathData":{
+            alert(`response.data : ${response.data}`);
+            break;
           }
           default:{
               alert(response.data)
@@ -67,7 +72,8 @@ class FSTable extends React.Component{
         allItems.push( React.createElement("tr",{
             key:x,onClick:() => {
               alert(this.fileSystemInfo[x].Name);
-              window.external.sendMessage(initPath);
+              let getPathData = `{"Command":"getPathData","Data":"${this.fileSystemInfo[x].Name}"}`;
+              window.external.sendMessage(getPathData);
             }
           },
             React.createElement("td",{width:"150px"}, 

@@ -50,8 +50,9 @@ namespace HelloPhotinoApp
                             window.SendWebMessage(JsonSerializer.Serialize( response));
                             break;
                         }
-                        case "getFileSystemInfo" :{
-
+                        case "getPathData" :{
+                            var response = new {command=wm.Command,data=wm.Data};
+                            window.SendWebMessage(JsonSerializer.Serialize(response));
                             break;
                         }
                         default:{
