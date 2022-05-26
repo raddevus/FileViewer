@@ -23,12 +23,11 @@ public class FileSystem{
         try{
         DirectoryInfo di = new DirectoryInfo(currentPath);
         Console.WriteLine($"currentPath : {currentPath}");
-        if (currentPath.Length == 1 && currentPath[0] == Path.DirectorySeparatorChar){
-            //doesn't allow user to get to root - probably will change later.
-            return allFileSysItems;
-        }
+
         var allSystemInfo = di.EnumerateFileSystemInfos();
-        allFileSysItems.Add(new FileSystemItem("..",'d',Path.Combine(Directory.GetParent(currentPath).FullName)));
+        if (currentPath.Length > 1 && currentPath[currentPath.Length-1] != Path.DirectorySeparatorChar){
+            allFileSysItems.Add(new FileSystemItem("..",'d',Path.Combine(Directory.GetParent(currentPath).FullName)));
+        }
 
         foreach (FileSystemInfo fi in allSystemInfo){
             char fsiType = 'f';
